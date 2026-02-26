@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rishi Wheel Care — Yokohama & Bridgestone Authorised Dealer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111318;
+    --panel: #181b22;
+    --border: rgba(255,255,255,0.07);
+    --red: #e63329;
+    --red2: #ff5a4e;
+    --gold: #f0b429;
+    --white: #f5f4f0;
+    --gray: #888;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4vw;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 3px; color: var(--red); }
+  .logo span { color: var(--white); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--gray); text-decoration: none; font-size: .9rem; font-weight: 500; letter-spacing: .5px; transition: color .2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { background: var(--red); color: #fff; border: none; padding: .6rem 1.6rem; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: .9rem; cursor: pointer; letter-spacing: .5px; transition: background .2s; }
+  .nav-cta:hover { background: var(--red2); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid; place-items: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--black);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(230,51,41,0.12) 0%, transparent 60%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 80px),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 80px);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; padding: 0 4vw; }
+  .hero-tag { display: inline-block; background: rgba(230,51,41,0.15); border: 1px solid rgba(230,51,41,0.4); color: var(--red2); font-size: .8rem; letter-spacing: 2px; text-transform: uppercase; padding: .4rem 1rem; margin-bottom: 1.5rem; }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: .9;
+    letter-spacing: 4px;
+    color: var(--white);
+  }
+  h1 em { font-family: 'Playfair Display', serif; font-style: italic; color: var(--red); font-size: .75em; letter-spacing: 0; }
+  .hero-sub { margin: 2rem 0 2.5rem; font-size: 1.1rem; font-weight: 300; color: #aaa; max-width: 480px; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--red); color: #fff; padding: .9rem 2.4rem; border: none; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; letter-spacing: .5px; transition: all .2s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: var(--red2); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--white); padding: .9rem 2.4rem; border: 1px solid rgba(255,255,255,0.25); font-family: 'DM Sans', sans-serif; font-size: 1rem; cursor: pointer; letter-spacing: .5px; transition: all .2s; text-decoration: none; display: inline-block; }
+  .btn-outline:hover { border-color: var(--white); }
+  .hero-stats { display: flex; gap: 3rem; margin-top: 5rem; flex-wrap: wrap; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--red); display: block; line-height: 1; }
+  .stat-label { font-size: .8rem; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 7rem 4vw; }
+  .section-tag { font-size: .75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: .75rem; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: 2px; line-height: 1; color: var(--white); }
+  .section-sub { color: #888; font-size: 1rem; font-weight: 300; margin-top: .75rem; max-width: 520px; line-height: 1.7; }
+  .section-head { margin-bottom: 3.5rem; }
+
+  /* ─── SERVICES ─── */
+  .services { background: var(--dark); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5px; background: var(--border); }
+  .service-card {
+    background: var(--dark);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: background .3s;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--red); transform: scaleX(0); transform-origin: left;
+    transition: transform .4s cubic-bezier(.4,0,.2,1);
+  }
+  .service-card:hover { background: var(--panel); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+  .service-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 2px; margin-bottom: .75rem; }
+  .service-card p { color: #777; font-size: .9rem; line-height: 1.7; }
+  .service-price { margin-top: 1.5rem; font-size: 1.3rem; font-weight: 600; color: var(--red); }
+  .service-price span { font-size: .8rem; font-weight: 300; color: var(--gray); }
+
+  /* ─── WHY US STRIP ─── */
+  .why-strip {
+    background: var(--red);
+    padding: 3rem 4vw;
+    display: flex; gap: 2rem; flex-wrap: wrap; justify-content: space-between; align-items: center;
+  }
+  .why-item { display: flex; align-items: center; gap: 1rem; }
+  .why-icon { font-size: 2rem; }
+  .why-item strong { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 1px; display: block; }
+  .why-item span { font-size: .85rem; opacity: .8; }
+
+  /* ─── TEAM ─── */
+  .team { background: var(--black); }
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
+  .team-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform .3s, border-color .3s;
+  }
+  .team-card:hover { transform: translateY(-6px); border-color: var(--red); }
+  .team-avatar {
+    width: 100%; height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem;
+    background: linear-gradient(135deg, #1a1d24, #0f1115);
+    position: relative;
+  }
+  .team-badge {
+    position: absolute; bottom: 1rem; right: 1rem;
+    background: var(--red); color: #fff;
+    font-size: .7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    padding: .25rem .7rem;
+  }
+  .team-info { padding: 1.5rem; }
+  .team-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 1px; margin-bottom: .25rem; }
+  .team-role { color: var(--red); font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: .75rem; }
+  .team-info p { color: #777; font-size: .85rem; line-height: 1.6; }
+  .team-exp { margin-top: 1rem; font-size: .8rem; color: var(--gold); font-weight: 500; }
+
+  /* ─── REVIEWS ─── */
+  .reviews { background: var(--dark); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .review-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    transition: border-color .3s;
+  }
+  .review-card:hover { border-color: rgba(230,51,41,0.4); }
+  .quote-mark { font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--red); opacity: .3; line-height: .5; margin-bottom: 1rem; display: block; }
+  .review-text { color: #bbb; font-size: .95rem; line-height: 1.8; font-style: italic; }
+  .review-stars { margin: 1rem 0 .5rem; color: var(--gold); font-size: 1rem; letter-spacing: 2px; }
+  .reviewer { display: flex; align-items: center; gap: .75rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+  .reviewer-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+  .reviewer-name { font-weight: 600; font-size: .95rem; }
+  .reviewer-meta { color: var(--gray); font-size: .8rem; }
+
+  /* ─── MAP ─── */
+  .map-section { background: var(--black); }
+  .map-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; align-items: start; }
+  @media(max-width:768px){ .map-layout { grid-template-columns: 1fr; } }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: .1rem; }
+  .contact-item strong { display: block; font-weight: 600; margin-bottom: .2rem; }
+  .contact-item span { color: var(--gray); font-size: .9rem; }
+  .map-embed {
+    width: 100%; height: 380px;
+    border: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .map-embed iframe { width: 100%; height: 100%; border: none; filter: grayscale(1) invert(1) brightness(.85); }
+  .hours-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+  .hours-table td { padding: .5rem 0; font-size: .9rem; border-bottom: 1px solid var(--border); }
+  .hours-table td:last-child { text-align: right; color: var(--gray); }
+
+  /* ─── BOOKING FORM ─── */
+  .booking { background: var(--panel); border-top: 1px solid var(--border); }
+  .booking-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  @media(max-width:768px){ .booking-layout { grid-template-columns: 1fr; } }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: .4rem; }
+  .form-group.full { grid-column: 1/-1; }
+  label { font-size: .8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); }
+  input, select, textarea {
+    background: var(--black);
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: .8rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .95rem;
+    transition: border-color .2s;
+    outline: none;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--red); }
+  select option { background: var(--dark); }
+  textarea { resize: vertical; min-height: 100px; }
+  .submit-btn {
+    background: var(--red); color: #fff; border: none;
+    padding: 1rem 2.5rem; font-size: 1rem; font-weight: 600;
+    font-family: 'DM Sans', sans-serif; letter-spacing: .5px;
+    cursor: pointer; margin-top: .5rem; transition: all .2s;
+    width: 100%;
+  }
+  .submit-btn:hover { background: var(--red2); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    padding: 3rem 4vw 2rem;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; color: var(--red); }
+  .footer-logo span { color: var(--white); }
+  footer p { color: var(--gray); font-size: .85rem; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * { animation: fadeUp .8s ease both; }
+  .hero-tag { animation-delay: .1s; }
+  h1 { animation-delay: .25s; }
+  .hero-sub { animation-delay: .4s; }
+  .hero-btns { animation-delay: .55s; }
+  .hero-stats { animation-delay: .7s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Rishi<span> Wheel Care</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#location">Location</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">✦ Yokohama & Bridgestone Authorised Dealer · Online PUC Centre</div>
+    <h1>RISHI<br>WHEEL<br><em>Care.</em></h1>
+    <p class="hero-sub">Wheel alignment, Online PUC certificate, Yokohama & Bridgestone tyres — trusted by thousands in Maharashtra.</p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;">
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:.5rem 1.2rem;font-size:.85rem;font-weight:600;letter-spacing:1px;display:flex;align-items:center;gap:.5rem;">
+        <span style="color:#e63329;font-size:1rem;">●</span> YOKOHAMA Authorised Dealer
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:.5rem 1.2rem;font-size:.85rem;font-weight:600;letter-spacing:1px;display:flex;align-items:center;gap:.5rem;">
+        <span style="color:#e63329;font-size:1rem;">●</span> BRIDGESTONE Authorised Dealer
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:.5rem 1.2rem;font-size:.85rem;font-weight:600;letter-spacing:1px;display:flex;align-items:center;gap:.5rem;">
+        <span style="color:#f0b429;font-size:1rem;">●</span> Online PUC Centre
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-primary">Book a Service</a>
+      <a href="#services" class="btn-outline">See All Services</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-num">4.9★</span><span class="stat-label">Google Rating</span></div>
+      <div><span class="stat-num">433+</span><span class="stat-label">Happy Customers</span></div>
+      <div><span class="stat-num">7</span><span class="stat-label">Days Open</span></div>
+      <div><span class="stat-num">2</span><span class="stat-label">Brand Dealers</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-head">
+    <div class="section-tag">What We Do</div>
+    <div class="section-title">Our Services</div>
+    <p class="section-sub">From routine maintenance to precision diagnostics — we handle it all with speed and care.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔄</div>
+      <h3>Wheel Alignment</h3>
+      <p>Precision 4-wheel computerized alignment. Extends tyre life, improves fuel efficiency and handling safety.</p>
+      <div class="service-price">Best Price <span>/ session</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🟡</div>
+      <h3>Yokohama Tyres</h3>
+      <p>Authorised dealer for Yokohama — premium Japanese tyres for cars, SUVs and commercial vehicles. All sizes available.</p>
+      <div class="service-price">Authorised Dealer</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔵</div>
+      <h3>Bridgestone Tyres</h3>
+      <p>Official Bridgestone authorised dealer. World's #1 tyre brand — passenger, performance and all-terrain options.</p>
+      <div class="service-price">Authorised Dealer</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <h3>Online PUC Certificate</h3>
+      <p>Get your Pollution Under Control (PUC) certificate quickly and legally. Online processing — fast, easy and valid nationwide.</p>
+      <div class="service-price">Same Day <span>/ certificate</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚖️</div>
+      <h3>Wheel Balancing</h3>
+      <p>Dynamic wheel balancing to eliminate vibrations and ensure even tyre wear for a smooth, safe ride.</p>
+      <div class="service-price">Best Price <span>/ session</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <h3>Tyre Fitting & Rotation</h3>
+      <p>Professional tyre fitting, rotation and pressure checks. Extend the life of your tyres with regular rotation service.</p>
+      <div class="service-price">Best Price <span>/ session</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US STRIP -->
+<div class="why-strip">
+  <div class="why-item"><span class="why-icon">🏆</span><div><strong>Authorised Dealer</strong><span>Yokohama & Bridgestone certified</span></div></div>
+  <div class="why-item"><span class="why-icon">📋</span><div><strong>Online PUC Centre</strong><span>Fast, valid, nationwide</span></div></div>
+  <div class="why-item"><span class="why-icon">⏱️</span><div><strong>Fast Service</strong><span>Most jobs done same day</span></div></div>
+  <div class="why-item"><span class="why-icon">💰</span><div><strong>Best Prices</strong><span>Honest & transparent pricing</span></div></div>
+</div>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="section-head">
+    <div class="section-tag">The Crew</div>
+    <div class="section-title">Meet Our Team</div>
+    <p class="section-sub">Skilled professionals who take pride in doing the job right — every single time.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">👨‍🔧<span class="team-badge">Lead Tech</span></div>
+      <div class="team-info">
+        <h3>Marcus Rivera</h3>
+        <div class="team-role">Senior Mechanic</div>
+        <p>Specializes in engine overhauls and diagnostics. Former dealership master technician with a passion for performance tuning.</p>
+        <div class="team-exp">⭐ 18 Years Experience</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">👩‍🔧<span class="team-badge">Alignment Pro</span></div>
+      <div class="team-info">
+        <h3>Layla Chen</h3>
+        <div class="team-role">Alignment Specialist</div>
+        <p>Certified in 3D wheel alignment systems. Known for her methodical approach and attention to manufacturer tolerances.</p>
+        <div class="team-exp">⭐ 11 Years Experience</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">👨‍🔧<span class="team-badge">Brakes</span></div>
+      <div class="team-info">
+        <h3>Deon Phillips</h3>
+        <div class="team-role">Brake & Suspension Tech</div>
+        <p>Expert in ABS systems, suspension geometry, and performance brake upgrades. Trained at the Brembo service center.</p>
+        <div class="team-exp">⭐ 9 Years Experience</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">👩‍💼<span class="team-badge">Manager</span></div>
+      <div class="team-info">
+        <h3>Sandra Moore</h3>
+        <div class="team-role">Service Manager</div>
+        <p>Keeps everything running smoothly — scheduling, estimates, and making sure every customer leaves happy.</p>
+        <div class="team-exp">⭐ 14 Years in Auto Industry</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="section-head">
+    <div class="section-tag">Client Feedback</div>
+    <div class="section-title">What People Say</div>
+    <p class="section-sub">Real words from real customers who trust us with their vehicles.</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <span class="quote-mark">"</span>
+      <p class="review-text">Rishi Wheel Care is the most popular car care center in all over Loni. They provide best and quick service with great results. Staff is professional and humble. They have best quality equipment and modern technology. Most recommended and trusted place.</p>
+      <div class="review-stars">★★★★★</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">LK</div>
+        <div>
+          <div class="reviewer-name">Local Customer</div>
+          <div class="reviewer-meta">Wheel Alignment & Balancing • Loni</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <span class="quote-mark">"</span>
+      <p class="review-text">Excellent experience! Most popular and recommended wheel alignment and balancing center in all over Loni. Rishi Wheel Care really takes care of our vehicles. Must visit!</p>
+      <div class="review-stars">★★★★★</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#2a7ef4">RC</div>
+        <div>
+          <div class="reviewer-name">Rahul C.</div>
+          <div class="reviewer-meta">Wheel Alignment • Loni</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <span class="quote-mark">"</span>
+      <p class="review-text">Amazing experience with their four-wheeler services like wheel alignment, wheel balancing, skimming, and steering adjustment. Proper handling of vehicle, quick and fast service at affordable price. Truly trusted place for car care.</p>
+      <div class="review-stars">★★★★★</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#12b886">AM</div>
+        <div>
+          <div class="reviewer-name">Anil M.</div>
+          <div class="reviewer-meta">Full Wheel Service • Loni</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <span class="quote-mark">"</span>
+      <p class="review-text">All time best wheel alignment and balancing center in all over Maharashtra. So effective and true service, it was really amazing! Must visit. Really love this alignment center.</p>
+      <div class="review-stars">★★★★★</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#9c36b5">SM</div>
+        <div>
+          <div class="reviewer-name">Suresh M.</div>
+          <div class="reviewer-meta">Wheel Alignment • Maharashtra</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <span class="quote-mark">"</span>
+      <p class="review-text">Most trusted and reliable wheel alignment and balancing center in all over Loni. I am so happy to be a customer of Rishi Wheel Care Centre. Highly recommended!</p>
+      <div class="review-stars">★★★★★</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#f59f00">VK</div>
+        <div>
+          <div class="reviewer-name">Vijay K.</div>
+          <div class="reviewer-meta">Regular Customer • Loni</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card" style="border-color:rgba(240,180,41,0.4)">
+      <span class="quote-mark">"</span>
+      <p class="review-text">⭐ 4.9 Rating on Google with 433+ reviews. Trusted by thousands of customers across Maharashtra for wheel alignment, balancing, Yokohama & Bridgestone tyres and Online PUC certification.</p>
+      <div class="review-stars">★★★★★</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:var(--gold);color:#000">G</div>
+        <div>
+          <div class="reviewer-name">Google Reviews</div>
+          <div class="reviewer-meta">4.9 ⭐ · 433+ Reviews · Verified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION & MAP -->
+<section class="map-section" id="location">
+  <div class="section-head">
+    <div class="section-tag">Find Us</div>
+    <div class="section-title">Location & Hours</div>
+  </div>
+  <div class="map-layout">
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="contact-icon">📍</span>
+        <div>
+          <strong>Address</strong>
+          <span>Ahmadnagar SH-44, Loni - Sangamner Rd<br>Rahuri, Loni, Maharashtra 413713</span>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=19.5782308,74.4702517" target="_blank" style="display:inline-block;margin-top:.6rem;color:var(--red);font-size:.8rem;font-weight:600;text-decoration:none;">📍 Get Directions →</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">📞</span>
+        <div>
+          <strong>Phone</strong>
+          <span>+91 99226 24777</span>
+          <div style="display:flex;gap:.75rem;margin-top:.75rem;flex-wrap:wrap;">
+            <a href="tel:+919922624777" style="background:var(--red);color:#fff;padding:.4rem 1rem;font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.5px;">📞 Call Now</a>
+            <a href="https://wa.me/919922624777" target="_blank" style="background:#25D366;color:#fff;padding:.4rem 1rem;font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.5px;">💬 WhatsApp</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">✉️</span>
+        <div>
+          <strong>Email</strong>
+          <span>rishiwheelcare@gmail.com</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">🕐</span>
+        <div>
+          <strong>Opening Hours</strong>
+          <table class="hours-table">
+            <tr><td>Mon – Sun</td><td>9:00 AM – 7:00 PM</td></tr>
+            <tr><td style="color:var(--gold);font-size:.8rem;" colspan="2">⭐ Open 7 Days a Week</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="map-embed">
+      <iframe
+        src="https://www.google.com/maps?q=19.5782308,74.4702517&z=17&output=embed"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section class="booking" id="booking">
+  <div class="section-head">
+    <div class="section-tag">Reserve Your Spot</div>
+    <div class="section-title">Book a Service</div>
+    <p class="section-sub">Fill out the form and we'll confirm your appointment within the hour.</p>
+  </div>
+  <div class="booking-layout">
+    <div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="John">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Doe">
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="john@email.com">
+        </div>
+        <div class="form-group full">
+          <label>Service Required</label>
+          <select>
+            <option>— Select a Service —</option>
+            <option>Wheel Alignment</option>
+            <option>Wheel Balancing</option>
+            <option>Tyre Fitting & Rotation</option>
+            <option>Yokohama Tyre Purchase</option>
+            <option>Bridgestone Tyre Purchase</option>
+            <option>Online PUC Certificate</option>
+            <option>Full Inspection</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Car Make</label>
+          <input type="text" placeholder="Toyota">
+        </div>
+        <div class="form-group">
+          <label>Car Model & Year</label>
+          <input type="text" placeholder="Camry 2020">
+        </div>
+        <div class="form-group full">
+          <label>Preferred Date</label>
+          <input type="date">
+        </div>
+        <div class="form-group full">
+          <label>Notes (optional)</label>
+          <textarea placeholder="Describe any issues you're experiencing…"></textarea>
+        </div>
+        <div class="form-group full">
+          <button class="submit-btn">Confirm Booking →</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="background:var(--black);border:1px solid var(--border);padding:2.5rem;">
+        <div class="section-tag">Why Book With Us</div>
+        <br>
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+          <div style="display:flex;gap:1rem;align-items:flex-start">
+            <span style="font-size:1.5rem">✅</span>
+            <div><strong style="display:block;margin-bottom:.3rem">Instant Confirmation</strong><span style="color:#777;font-size:.9rem">We'll send you a confirmation SMS and email right away.</span></div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start">
+            <span style="font-size:1.5rem">🔔</span>
+            <div><strong style="display:block;margin-bottom:.3rem">Reminders</strong><span style="color:#777;font-size:.9rem">We'll remind you 24 hours and 1 hour before your appointment.</span></div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start">
+            <span style="font-size:1.5rem">💳</span>
+            <div><strong style="display:block;margin-bottom:.3rem">Pay on the Day</strong><span style="color:#777;font-size:.9rem">No deposit needed. Pay when you collect your vehicle.</span></div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start">
+            <span style="font-size:1.5rem">🚗</span>
+            <div><strong style="display:block;margin-bottom:.3rem">Free Shuttle</strong><span style="color:#777;font-size:.9rem">Need a lift while we work? We offer a free local shuttle service.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Rishi<span> Wheel Care</span></div>
+    <p style="margin-top:.4rem">© 2025 Rishi Wheel Care. All rights reserved.</p>
+    <p style="margin-top:.25rem;color:#555;font-size:.8rem;">Yokohama & Bridgestone Authorised Dealer · Online PUC Centre</p>
+  </div>
+  <div style="text-align:right">
+    <p style="color:#666;font-size:.85rem;">Ahmadnagar SH-44, Loni - Sangamner Rd, Rahuri, Loni, Maharashtra 413713</p>
+    <p style="color:#666;font-size:.85rem;margin-top:.3rem;">📞 +91 99226 24777 &nbsp;|&nbsp; ⭐ 4.9 on Google (433+ reviews)</p>
+    <div style="display:flex;gap:.75rem;margin-top:.75rem;justify-content:flex-end;flex-wrap:wrap;">
+      <a href="tel:+919922624777" style="color:var(--red);font-size:.8rem;font-weight:600;text-decoration:none;">Call Us</a>
+      <a href="https://wa.me/919922624777" target="_blank" style="color:#25D366;font-size:.8rem;font-weight:600;text-decoration:none;">WhatsApp</a>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=19.5782308,74.4702517" target="_blank" style="color:#aaa;font-size:.8rem;font-weight:600;text-decoration:none;">Get Directions</a>
+    </div>
+  </div>
+</footer>
